@@ -6,8 +6,14 @@ Compliments Results
 
 {% block content %}
 
-<!-- Your HTML code goes here! -->
+<p>Your name is {{username}} and your answer was {{wantscompliments}}. Below are {{numcompliments}} compliments for you.</p>
 
+<p>You are...</p>
 
+<ul>
+{% for compliment in complimentlist %}
+    <li>{{compliment}}</li>
+{% endfor %}
+</ul>
 
 {% endblock %}
