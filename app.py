@@ -128,8 +128,10 @@ def save_image(image, filter_type):
 def apply_filter(file_path, filter_name):
     """Apply a Pillow filter to a saved image."""
     i = Image.open(file_path)
+    print("Testing image", i)
     i.thumbnail((500, 500))
     i = i.filter(filter_types_dict.get(filter_name))
+    print("Testing image", i)
     i.save(file_path)
 
 @app.route('/image_filter', methods=['GET', 'POST'])
@@ -155,7 +157,7 @@ def image_filter():
 
         image_url = f'./static/images/{image.filename}'
 
-        apply_filter(image, filter_type)
+        apply_filter(image_url, filter_type)
 
         context = {
             # TODO: Add context variables here for:
