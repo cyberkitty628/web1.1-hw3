@@ -181,7 +181,6 @@ def image_filter():
 # GIF SEARCH ROUTE
 ################################################################################
 
-
 API_KEY = os.getenv('API_KEY')
 print(API_KEY)
 
@@ -192,20 +191,14 @@ pp = PrettyPrinter(indent=4)
 def gif_search():
     """Show a form to search for GIFs and show resulting GIFs from Tenor API."""
     if request.method == 'POST':
-        # TODO: Get the search query & number of GIFs requested by the user, store each as a 
-        # variable
-        request.forms.get('search_query, quantity')
-
+        user_query = request.form.get('search_query')
+        num_gifs = request.form.get('quantity')
         response = requests.get(
             TENOR_URL,
             {
-                # TODO: Add in key-value pairs for:
-                # - 'q': the search query
-                # - 'key': the API key (defined above)
-                # - 'limit': the number of GIFs requested
-                #'q': search_query,
+                'q': user_query,
                 'key': API_KEY,
-                #'limit': quantity
+                'limit': num_gifs
             })
 
         gifs = json.loads(response.content).get('results')
